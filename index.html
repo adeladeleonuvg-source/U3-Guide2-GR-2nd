@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegio Montano - Interactive Study Guide: Unit 3 Grammar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #F2F5E9;
+        }
+        .montano-blue { color: #1269A8; }
+        .bg-montano-blue { background-color: #1269A8; }
+        .border-montano-blue { border-color: #1269A8; }
+        
+        .montano-yellow { color: #D4B200; }
+        .bg-montano-yellow { background-color: #F7D615; }
+        .border-montano-yellow { border-color: #F7D615; }
+
+        .montano-green { color: #54887D; }
+        .bg-montano-green { background-color: #54887D; }
+        .border-montano-green { border-color: #54887D; }
+
+        .montano-card-bg { background-color: #88B5C7; }
+        .montano-olive { background-color: #A6B046; }
+        .montano-soft-bg { background-color: #F2F5E9; }
+
+        /* Custom scrollbar for whiteboard feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F2F5E9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #54887D;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="p-2 sm:p-6 min-h-screen flex flex-col items-center justify-start">
+
+    <!-- Whiteboard Frame -->
+    <div id="whiteboard-frame" class="w-full max-w-6xl bg-white rounded-xl shadow-2xl border-4 border-[#F7D615] flex flex-col overflow-hidden transition-all duration-300">
+        
+        <!-- Header / Navigation Bar -->
+        <div class="bg-[#1269A8] text-white p-4 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-[#F7D615]">
+            <!-- Institutional Logo & Title -->
+            <div class="flex items-center gap-3">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" alt="Colegio Montano Logo" class="h-12 w-12 rounded-full object-cover bg-white p-1 border-2 border-[#F7D615]">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide">Colegio Montano</h1>
+                    <p class="text-xs sm:text-sm text-[#F7D615] font-semibold">Our World 2 • Unit 3: Grammar I & II (Second Grade)</p>
+                </div>
+            </div>
+
+            <!-- Fullscreen Toggle Button -->
+            <button onclick="toggleFullscreen()" class="bg-[#F7D615] text-[#1269A8] hover:bg-yellow-400 font-bold px-4 py-2 rounded-lg shadow-md transition transform hover:scale-105 flex items-center gap-2 text-sm">
+                <span>[ ⛶ Fullscreen ]</span>
+            </button>
+        </div>
+
+        <!-- Horizontal Tabs Menu -->
+        <div class="bg-[#54887D] px-2 sm:px-4 py-2 flex flex-wrap gap-2 justify-center sm:justify-start border-b-2 border-[#1269A8]">
+            <button onclick="switchTab('theory')" id="btn-theory" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm sm:text-base bg-[#F7D615] text-[#1269A8] shadow transition">📚 Theory</button>
+            <button onclick="switchTab('examples')" id="btn-examples" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm sm:text-base text-white hover:bg-[#54887D]/80 transition">💡 Examples (15)</button>
+            <button onclick="switchTab('exercises')" id="btn-exercises" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm sm:text-base text-white hover:bg-[#54887D]/80 transition">✍️ Practice (15)</button>
+            <button onclick="switchTab('reflection')" id="btn-reflection" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm sm:text-base text-white hover:bg-[#54887D]/80 transition">🤔 Critical Reflection</button>
+            <button onclick="switchTab('evaluation')" id="btn-evaluation" class="tab-btn px-4 py-2 rounded-lg font-bold text-sm sm:text-base text-white hover:bg-[#54887D]/80 transition">📝 Formative Quiz</button>
+        </div>
+
+        <!-- Main Content Canvas -->
+        <div class="p-4 sm:p-8 bg-[#F2F5E9] flex-grow overflow-y-auto max-h-[75vh]" id="content-container">
+
+            <!-- TAB 1: THEORY -->
+            <div id="tab-theory" class="tab-content space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-8 border-[#1269A8]">
+                    <h2 class="text-2xl font-bold text-[#1269A8] mb-3">Grammar I: Can and Can't for Ability</h2>
+                    <p class="text-gray-700 mb-4">We use <strong>can</strong> to talk about abilities (things animals or people are able to do) and <strong>can't</strong> (cannot) for things they are not able to do.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Affirmative & Negative Box -->
+                        <div class="bg-[#88B5C7]/20 p-4 rounded-lg border border-[#88B5C7]">
+                            <h3 class="font-bold text-[#1269A8] mb-2">Affirmative (+) & Negative (-)</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>A penguin <strong class="text-[#1269A8]">can</strong> swim.</li>
+                                <li>It <strong class="text-[#1269A8]">can't</strong> fly.</li>
+                                <li>Penguins <strong class="text-[#1269A8]">can</strong> swim. They <strong class="text-[#1269A8]">can't</strong> fly.</li>
+                            </ul>
+                            <p class="text-xs text-gray-500 mt-2">Note: <em>can't = can not</em></p>
+                        </div>
+                        
+                        <!-- Questions & Short Answers Box -->
+                        <div class="bg-[#88B5C7]/20 p-4 rounded-lg border border-[#88B5C7]">
+                            <h3 class="font-bold text-[#1269A8] mb-2">Yes/No Questions & Answers</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li><strong>Can</strong> a penguin swim? → Yes, it <strong class="text-[#1269A8]">can</strong>. / No, it <strong class="text-[#1269A8]">can't</strong>.</li>
+                                <li><strong>Can</strong> penguins swim? → Yes, they <strong class="text-[#1269A8]">can</strong>. / No, they <strong class="text-[#1269A8]">can't</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-8 border-[#54887D]">
+                    <h2 class="text-2xl font-bold text-[#54887D] mb-3">Grammar II: Simple Present - Yes/No Questions with Have</h2>
+                    <p class="text-gray-700 mb-4">We use <strong>Do</strong> or <strong>Does</strong> to ask questions about physical features and possession using <strong>have</strong>.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Third Person Singular -->
+                        <div class="bg-[#A6B046]/20 p-4 rounded-lg border border-[#A6B046]">
+                            <h3 class="font-bold text-[#54887D] mb-2">Singular (It / Animals)</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li><strong>Does</strong> a panda <strong>have</strong> a short tail?</li>
+                                <li>Yes, it <strong>does</strong>. / No, it <strong>doesn't</strong>.</li>
+                            </ul>
+                            <p class="text-xs text-gray-500 mt-2">Note: <em>doesn't = does not</em></p>
+                        </div>
+                        
+                        <!-- Plural / I / You / They -->
+                        <div class="bg-[#A6B046]/20 p-4 rounded-lg border border-[#A6B046]">
+                            <h3 class="font-bold text-[#54887D] mb-2">Plural (Pandas / They)</h3>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li><strong>Do</strong> pandas <strong>have</strong> long necks?</li>
+                                <li>Yes, they <strong>do</strong>. / No, they <strong>don't</strong>.</li>
+                            </ul>
+                            <p class="text-xs text-gray-500 mt-2">Note: <em>don't = do not</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: EXAMPLES (15 Total: 5 Basic, 5 Intermediate, 5 Advanced) -->
+            <div id="tab-examples" class="tab-content hidden space-y-6">
+                <div class="bg-[#1269A8] text-white p-4 rounded-xl shadow">
+                    <h2 class="text-xl font-bold">💡 Resolved Examples (15 Levels)</h2>
+                    <p class="text-sm opacity-90">Review how sentences and questions are structured across Basic, Intermediate, and Advanced levels.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- BASIC EXAMPLES -->
+                    <h3 class="text-lg font-bold text-[#54887D] border-b-2 border-[#54887D] pb-1">🌱 Basic Level Examples (Can / Can't & Has)</h3>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-600">
+                        <span class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded mb-1">Basic #1</span>
+                        <p class="font-semibold text-gray-800">Sentence with <em>can</em>:</p>
+                        <p class="text-[#1269A8] font-medium">A fish <span class="bg-yellow-100 px-1 rounded">can</span> swim.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-600">
+                        <span class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded mb-1">Basic #2</span>
+                        <p class="font-semibold text-gray-800">Sentence with <em>can't</em>:</p>
+                        <p class="text-[#1269A8] font-medium">A rabbit <span class="bg-yellow-100 px-1 rounded">can't</span> fly.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-600">
+                        <span class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded mb-1">Basic #3</span>
+                        <p class="font-semibold text-gray-800">Question with <em>Can</em>:</p>
+                        <p class="text-[#1269A8] font-medium"><span class="bg-yellow-100 px-1 rounded">Can</span> a bird fly? → Yes, it can.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-600">
+                        <span class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded mb-1">Basic #4</span>
+                        <p class="font-semibold text-gray-800">Question with <em>Does... have</em>:</p>
+                        <p class="text-[#54887D] font-medium"><span class="bg-yellow-100 px-1 rounded">Does</span> a cat have a tail? → Yes, it does.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-600">
+                        <span class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded mb-1">Basic #5</span>
+                        <p class="font-semibold text-gray-800">Question with <em>Do... have</em>:</p>
+                        <p class="text-[#54887D] font-medium"><span class="bg-yellow-100 px-1 rounded">Do</span> dogs have four legs? → Yes, they do.</p>
+                    </div>
+
+                    <!-- INTERMEDIATE EXAMPLES -->
+                    <h3 class="text-lg font-bold text-[#1269A8] border-b-2 border-[#1269A8] pb-1 pt-4">⚡ Intermediate Level Examples (Combining Abilities & Negative Answers)</h3>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-blue-600">
+                        <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded mb-1">Intermediate #6</span>
+                        <p class="font-semibold text-gray-800">Negative ability short answer:</p>
+                        <p class="text-[#1269A8] font-medium">Can a hippo climb? → No, it <span class="bg-yellow-100 px-1 rounded">can't</span>.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-blue-600">
+                        <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded mb-1">Intermediate #7</span>
+                        <p class="font-semibold text-gray-800">Plural ability sentence:</p>
+                        <p class="text-[#1269A8] font-medium">Monkeys can climb, but they <span class="bg-yellow-100 px-1 rounded">can't swim</span>.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-blue-600">
+                        <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded mb-1">Intermediate #8</span>
+                        <p class="font-semibold text-gray-800">Negative possessive answer (singular):</p>
+                        <p class="text-[#54887D] font-medium">Does a monkey have wings? → No, it <span class="bg-yellow-100 px-1 rounded">doesn't</span>.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-blue-600">
+                        <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded mb-1">Intermediate #9</span>
+                        <p class="font-semibold text-gray-800">Negative possessive answer (plural):</p>
+                        <p class="text-[#54887D] font-medium">Do crocodiles have long necks? → No, they <span class="bg-yellow-100 px-1 rounded">don't</span>.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-blue-600">
+                        <span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded mb-1">Intermediate #10</span>
+                        <p class="font-semibold text-gray-800">Multi-action contrast (Sonia):</p>
+                        <p class="text-[#1269A8] font-medium">Sonia can play basketball, but she <span class="bg-yellow-100 px-1 rounded">can't cook</span>.</p>
+                    </div>
+
+                    <!-- ADVANCED EXAMPLES -->
+                    <h3 class="text-lg font-bold text-amber-700 border-b-2 border-amber-500 pb-1 pt-4">🔥 Advanced Level Examples (Complex Multi-clause & Animal Comparisons)</h3>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-amber-600">
+                        <span class="inline-block px-2 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded mb-1">Advanced #11</span>
+                        <p class="font-semibold text-gray-800">Double ability contrast with personal pronouns:</p>
+                        <p class="text-[#1269A8] font-medium">Kangaroos can hop and run, but they <span class="bg-yellow-100 px-1 rounded">can't climb or fly</span>.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-amber-600">
+                        <span class="inline-block px-2 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded mb-1">Advanced #12</span>
+                        <p class="font-semibold text-gray-800">Comparative question formulation:</p>
+                        <p class="text-[#54887D] font-medium"><span class="bg-yellow-100 px-1 rounded">Does</span> an elephant have a long trunk and big ears? → Yes, it does.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-amber-600">
+                        <span class="inline-block px-2 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded mb-1">Advanced #13</span>
+                        <p class="font-semibold text-gray-800">Family member skill contrast (Brother):</p>
+                        <p class="text-[#1269A8] font-medium">Her brother <span class="bg-yellow-100 px-1 rounded">can play soccer</span>, but he can't climb a tree.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-amber-600">
+                        <span class="inline-block px-2 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded mb-1">Advanced #14</span>
+                        <p class="font-semibold text-gray-800">Plural animal feature interrogation:</p>
+                        <p class="text-[#54887D] font-medium"><span class="bg-yellow-100 px-1 rounded">Do</span> giraffes have long necks and short tails? → Yes, they do.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-amber-600">
+                        <span class="inline-block px-2 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded mb-1">Advanced #15</span>
+                        <p class="font-semibold text-gray-800">Personal ability statement (Unit 3 application):</p>
+                        <p class="text-[#1269A8] font-medium">I can ride a bike, but I <span class="bg-yellow-100 px-1 rounded">can't drive a car</span>.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 3: EXERCISES (15 Total with Toggleable Solutions) -->
+            <div id="tab-exercises" class="tab-content hidden space-y-6">
+                <div class="bg-[#54887D] text-white p-4 rounded-xl shadow">
+                    <h2 class="text-xl font-bold">✍️ Practice Exercises (15 Levels)</h2>
+                    <p class="text-sm opacity-90">Test your knowledge! Try to solve each exercise before clicking "Show Solution".</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- BASIC EXERCISES (1-5) -->
+                    <h3 class="text-lg font-bold text-green-700 border-b-2 border-green-500 pb-1">🌱 Basic Exercises</h3>
+
+                    <!-- Ex 1 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">Basic Exercise 1</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">1. Complete with <code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#1269A8]">can</code> or <code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#1269A8]">can't</code>: A hippo _______ climb.</p>
+                        <button onclick="toggleSolution('sol-1')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-1" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> A hippo <span class="font-bold text-[#1269A8]">can't</span> climb.
+                        </div>
+                    </div>
+
+                    <!-- Ex 2 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">Basic Exercise 2</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">2. Complete with <code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#1269A8]">can</code> or <code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#1269A8]">can't</code>: A parrot _______ fly.</p>
+                        <button onclick="toggleSolution('sol-2')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-2" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> A parrot <span class="font-bold text-[#1269A8]">can</span> fly.
+                        </div>
+                    </div>
+
+                    <!-- Ex 3 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">Basic Exercise 3</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">3. Write the correct question word (<code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#1269A8]">Can</code>): _______ a penguin swim?</p>
+                        <button onclick="toggleSolution('sol-3')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-3" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> <span class="font-bold text-[#1269A8]">Can</span> a penguin swim?
+                        </div>
+                    </div>
+
+                    <!-- Ex 4 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">Basic Exercise 4</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar II</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">4. Complete with <code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#54887D]">Does</code> or <code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#54887D]">Do</code>: _______ a panda have a short tail?</p>
+                        <button onclick="toggleSolution('sol-4')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-4" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> <span class="font-bold text-[#54887D]">Does</span> a panda have a short tail?
+                        </div>
+                    </div>
+
+                    <!-- Ex 5 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">Basic Exercise 5</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar II</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">5. Complete the short answer: Does a crocodile have sharp teeth? Yes, it _______.</p>
+                        <button onclick="toggleSolution('sol-5')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-5" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> Yes, it <span class="font-bold text-[#54887D]">does</span>.
+                        </div>
+                    </div>
+
+                    <!-- INTERMEDIATE EXERCISES (6-10) -->
+                    <h3 class="text-lg font-bold text-blue-700 border-b-2 border-blue-500 pb-1 pt-4">⚡ Intermediate Exercises</h3>
+
+                    <!-- Ex 6 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">Intermediate Exercise 6</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">6. Complete the sentence: Sonia _______ play basketball, but she can't cook.</p>
+                        <button onclick="toggleSolution('sol-6')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-6" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> Sonia <span class="font-bold text-[#1269A8]">can</span> play basketball, but she can't cook.
+                        </div>
+                    </div>
+
+                    <!-- Ex 7 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">Intermediate Exercise 7</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar II</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">7. Formulate the question for a monkey: _______ a monkey have a long neck?</p>
+                        <button onclick="toggleSolution('sol-7')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-7" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> <span class="font-bold text-[#54887D]">Does</span> a monkey have a long neck? (Answer: No, it doesn't).
+                        </div>
+                    </div>
+
+                    <!-- Ex 8 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">Intermediate Exercise 8</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">8. Complete with plural pronouns: Can penguins swim? Yes, _______ can.</p>
+                        <button onclick="toggleSolution('sol-8')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-8" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> Yes, <span class="font-bold text-[#1269A8]">they</span> can.
+                        </div>
+                    </div>
+
+                    <!-- Ex 9 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">Intermediate Exercise 9</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar II</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">9. Complete with <code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#54887D]">Do</code> or <code class="bg-gray-100 px-1 py-0.5 rounded font-bold text-[#54887D]">Does</code>: _______ penguins have short tails?</p>
+                        <button onclick="toggleSolution('sol-9')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-9" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> <span class="font-bold text-[#54887D]">Do</span> penguins have short tails?
+                        </div>
+                    </div>
+
+                    <!-- Ex 10 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">Intermediate Exercise 10</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">10. Complete: Crocodiles can swim, but they _______ fly.</p>
+                        <button onclick="toggleSolution('sol-10')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-10" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> Crocodiles can swim, but they <span class="font-bold text-[#1269A8]">can't</span> fly.
+                        </div>
+                    </div>
+
+                    <!-- ADVANCED EXERCISES (11-15) -->
+                    <h3 class="text-lg font-bold text-amber-700 border-b-2 border-amber-500 pb-1 pt-4">🔥 Advanced Exercises</h3>
+
+                    <!-- Ex 11 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded">Advanced Exercise 11</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">11. Write your own sentence following the model: I can _______, but I can't _______.</p>
+                        <button onclick="toggleSolution('sol-11')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-11" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Sample Solution:</strong> I can <span class="font-bold text-[#1269A8]">swim</span>, but I can't <span class="font-bold text-[#1269A8]">fly</span>. (Accept student's personal answers).
+                        </div>
+                    </div>
+
+                    <!-- Ex 12 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded">Advanced Exercise 12</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar II</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">12. Complete the full question and negative answer: _______ an elephant have wings? No, _______.</p>
+                        <button onclick="toggleSolution('sol-12')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-12" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> <span class="font-bold text-[#54887D]">Does</span> an elephant have wings? No, <span class="font-bold text-[#54887D]">it doesn't</span>.
+                        </div>
+                    </div>
+
+                    <!-- Ex 13 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded">Advanced Exercise 13</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">13. Fill in the blanks: Kangaroos _______ jump and run, but they _______ fly.</p>
+                        <button onclick="toggleSolution('sol-13')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-13" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> Kangaroos <span class="font-bold text-[#1269A8]">can</span> jump and run, but they <span class="font-bold text-[#1269A8]">can't</span> fly.
+                        </div>
+                    </div>
+
+                    <!-- Ex 14 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded">Advanced Exercise 14</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar II</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">14. Complete the plural question: _______ giraffes have long necks? Yes, _______.</p>
+                        <button onclick="toggleSolution('sol-14')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-14" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> <span class="font-bold text-[#54887D]">Do</span> giraffes have long necks? Yes, <span class="font-bold text-[#54887D]">they do</span>.
+                        </div>
+                    </div>
+
+                    <!-- Ex 15 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded">Advanced Exercise 15</span>
+                            <span class="text-xs text-gray-500">Unit 3 - Grammar I & II</span>
+                        </div>
+                        <p class="text-gray-800 font-medium mb-3">15. Correct the error in this sentence: "A monkey can climbs trees." → Write the correct sentence.</p>
+                        <button onclick="toggleSolution('sol-15')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold hover:bg-[#1269A8]/80 transition">🔍 Show Solution</button>
+                        <div id="sol-15" class="hidden mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm text-blue-900">
+                            <strong>Solution:</strong> A monkey <span class="font-bold text-[#1269A8]">can climb</span> trees. (After modal verbs like <em>can</em>, use the base verb without 's').
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 4: CRITICAL REFLECTION -->
+            <div id="tab-reflection" class="tab-content hidden space-y-6">
+                <div class="bg-[#1269A8] text-white p-4 rounded-xl shadow">
+                    <h2 class="text-xl font-bold">🤔 Critical Reflection Questions</h2>
+                    <p class="text-sm opacity-90">Open questions for conceptual analysis and logical thinking in Second Grade.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow border-l-8 border-[#54887D]">
+                        <h3 class="font-bold text-lg text-[#54887D] mb-2">Question 1: Animal Abilities</h3>
+                        <p class="text-gray-700">Why do you think animals like fish can swim, but land animals like hippos cannot? How does their body help them?</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow border-l-8 border-[#1269A8]">
+                        <h3 class="font-bold text-lg text-[#1269A8] mb-2">Question 2: Rules of Grammar</h3>
+                        <p class="text-gray-700">When do we use <code class="bg-gray-100 px-1 rounded font-bold">Does</code> instead of <code class="bg-gray-100 px-1 rounded font-bold">Do</code> when asking questions about animals?</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow border-l-8 border-[#A6B046]">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">Question 3: Personal Growth</h3>
+                        <p class="text-gray-700">Think of something you couldn't do when you were a baby, but you can do now. Why is practice important?</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow border-l-8 border-[#F7D615]">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">Question 4: Teamwork & Nature</h3>
+                        <p class="text-gray-700">If animals have different abilities (running, climbing, swimming), how do they help each other live in nature?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: FORMATIVE EVALUATION -->
+            <div id="tab-evaluation" class="tab-content hidden space-y-6">
+                <div class="bg-[#54887D] text-white p-4 rounded-xl shadow">
+                    <h2 class="text-xl font-bold">📝 Formative Evaluation Quiz</h2>
+                    <p class="text-sm opacity-90">Reinforce your learning with these application challenges. Use the button to verify your answers.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Quiz Item 1 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <p class="font-bold text-gray-800 mb-2">1. Choose the correct option: "Monkeys _______ climb trees."</p>
+                        <div class="space-y-1 text-sm text-gray-700 mb-3">
+                            <label class="block"><input type="radio" name="q1" value="a"> a) can</label>
+                            <label class="block"><input type="radio" name="q1" value="b"> b) can't</label>
+                            <label class="block"><input type="radio" name="q1" value="c"> c) does</label>
+                        </div>
+                        <button onclick="toggleSolution('quiz-sol-1')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold">Check Answer</button>
+                        <div id="quiz-sol-1" class="hidden mt-2 p-2 bg-green-50 text-green-900 rounded text-sm">
+                            <strong>Correct Answer:</strong> a) can (Monkeys are well known for climbing trees).
+                        </div>
+                    </div>
+
+                    <!-- Quiz Item 2 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <p class="font-bold text-gray-800 mb-2">2. Choose the correct question: "_______ pandas have short tails?"</p>
+                        <div class="space-y-1 text-sm text-gray-700 mb-3">
+                            <label class="block"><input type="radio" name="q2" value="a"> a) Does</label>
+                            <label class="block"><input type="radio" name="q2" value="b"> b) Do</label>
+                            <label class="block"><input type="radio" name="q2" value="c"> c) Can</label>
+                        </div>
+                        <button onclick="toggleSolution('quiz-sol-2')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold">Check Answer</button>
+                        <div id="quiz-sol-2" class="hidden mt-2 p-2 bg-green-50 text-green-900 rounded text-sm">
+                            <strong>Correct Answer:</strong> b) Do (Because "pandas" is plural).
+                        </div>
+                    </div>
+
+                    <!-- Quiz Item 3 -->
+                    <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                        <p class="font-bold text-gray-800 mb-2">3. Complete the negative short answer: "Does a crocodile have wings? No, _______."</p>
+                        <div class="space-y-1 text-sm text-gray-700 mb-3">
+                            <label class="block"><input type="radio" name="q3" value="a"> a) it can't</label>
+                            <label class="block"><input type="radio" name="q3" value="b"> b) it doesn't</label>
+                            <label class="block"><input type="radio" name="q3" value="c"> c) they don't</label>
+                        </div>
+                        <button onclick="toggleSolution('quiz-sol-3')" class="bg-[#1269A8] text-white text-xs px-3 py-1.5 rounded font-semibold">Check Answer</button>
+                        <div id="quiz-sol-3" class="hidden mt-2 p-2 bg-green-50 text-green-900 rounded text-sm">
+                            <strong>Correct Answer:</strong> b) it doesn't (Singular question with does requires doesn't).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Whiteboard Footer -->
+        <div class="bg-[#1269A8] text-white p-3 text-center text-xs border-t-2 border-[#F7D615] flex flex-col sm:flex-row items-center justify-between px-6">
+            <span>Colegio Montano • Instructional Design & Educational Web Development</span>
+            <span class="text-[#F7D615] font-bold">Our World 2 • Unit 3 Interactive Whiteboard</span>
+        </div>
+
+    </div>
+
+    <!-- JavaScript Interactive Logic -->
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            // Remove active styles from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-[#F7D615]', 'text-[#1269A8]', 'shadow');
+                btn.classList.add('text-white');
+            });
+
+            // Show selected tab content
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            // Highlight active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('text-white');
+            activeBtn.classList.add('bg-[#F7D615]', 'text-[#1269A8]', 'shadow');
+        }
+
+        // Toggle solution visibility
+        function toggleSolution(solId) {
+            const solElement = document.getElementById(solId);
+            if (solElement.classList.contains('hidden')) {
+                solElement.classList.remove('hidden');
+            } else {
+                solElement.classList.add('hidden');
+            }
+        }
+
+        // Fullscreen API implementation
+        function toggleFullscreen() {
+            const frame = document.getElementById('whiteboard-frame');
+            if (!document.fullscreenElement) {
+                if (frame.requestFullscreen) {
+                    frame.requestFullscreen();
+                } else if (frame.webkitRequestFullscreen) {
+                    frame.webkitRequestFullscreen();
+                } else if (frame.msRequestFullscreen) {
+                    frame.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
